@@ -42,3 +42,11 @@
 - 新增 tests/conftest.py 提取共享 qapp fixture
 - 总计 544 tests passed, ruff + mypy 零错误
 - 子 agent: frontend-implementer ×2 + test-writer ×2
+
+## 2026-05-09 — Spec 010 完成
+- 创建 `.github/workflows/ci.yml` (Windows runner, ruff + mypy + pytest)
+- 创建 `README.md` (项目介绍、安装、使用、配置、技术栈)
+- 创建 `CONTRIBUTING.md` (代码风格、PR 流程、阵容数据贡献模板、项目结构)
+- 更新 `pyproject.toml` 添加 `pynput` 依赖和 `[dev]` 可选依赖 (pytest/ruff/mypy)
+- 总计 544 tests passed, ruff + mypy 零错误
+- 全部 10 个 Spec 完成

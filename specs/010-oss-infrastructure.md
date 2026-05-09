@@ -15,6 +15,6 @@
 - [ ] `.gitignore`：排除 `config.yaml`、临时截图、`__pycache__`、`*.db`、`dist/`、`build/`
 - [ ] 一键安装依赖并启动：`uv sync && tft-consider` 或 `pip install -e . && tft-consider`
 
-## Status: PENDING
+## Status: COMPLETE
 
-<!-- NR_OF_TRIES: 0 -->
+<!-- NR_OF_TRIES: 1 -->
