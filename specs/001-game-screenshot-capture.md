@@ -19,6 +19,6 @@
 ## Technical Risk
 GameLogs 的日志格式和回合阶段标志行需要逆向分析验证，是 MVP 最高风险项。如果日志解析不可行，降级为固定间隔截屏 + LLM 判断阶段模式。
 
-## Status: PENDING
+## Status: COMPLETE
 
-<!-- NR_OF_TRIES: 0 -->
+<!-- NR_OF_TRIES: 1 -->
