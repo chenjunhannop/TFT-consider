@@ -4,6 +4,8 @@
     tft-consider           显示版本和使用说明
     tft-consider sync-data  从外部数据站同步 meta 数据
     tft-consider check      检查配置和环境
+    tft-consider run        启动桌面应用主窗口
+    tft-consider history    显示最近对局记录
 """
 
 from __future__ import annotations
@@ -25,12 +27,27 @@ def main() -> None:
     elif len(sys.argv) > 1 and sys.argv[1] == "check":
         print("TFT-Consider v0.1.0 — 配置检查")
         _cmd_check()
+    elif len(sys.argv) > 1 and sys.argv[1] == "run":
+        _cmd_run()
+    elif len(sys.argv) > 1 and sys.argv[1] == "history":
+        _cmd_history()
     else:
         print("TFT-Consider v0.1.0")
         print("Usage:")
         print("  tft-consider            显示帮助信息")
         print("  tft-consider sync-data   从外部数据站同步 meta 数据")
         print("  tft-consider check       检查配置和环境")
+        print("  tft-consider run         启动桌面应用主窗口")
+        print("  tft-consider history     显示最近对局记录")
+
+
+def _cmd_run() -> None:
+    """启动 TFT-Consider 桌面应用主窗口。"""
+    from tft_consider.config import load_config
+    from tft_consider.ui.app import run_app
+
+    config = load_config()
+    run_app(config)
 
 
 def _cmd_check() -> None:
@@ -84,6 +101,36 @@ def _cmd_check() -> None:
             print(f"  [OK] {mod_name} ({desc})")
         except ImportError:
             print(f"  [WARN] {mod_name} 未安装 ({desc})")
+
+
+def _cmd_history() -> None:
+    """显示最近的对局记录。"""
+    from tft_consider.database.models import init_db
+    from tft_consider.tracker.replay import list_replays
+
+    init_db()
+    replays = list_replays(limit=20)
+
+    if not replays:
+        print("暂无对局记录。")
+        return
+
+    print(f"\n最近 {len(replays)} 条对局记录:")
+    print("-" * 70)
+    print(f"{'ID':<6} {'玩家':<12} {'开始时间':<22} {'排名':<6} {'回合数':<8}")
+    print("-" * 70)
+
+    for r in replays:
+        rank = str(r["final_rank"]) if r["final_rank"] is not None else "-"
+        started = r["started_at"][:19] if r["started_at"] else "-"
+        print(
+            f"{r['id']:<6} "
+            f"{r['player_name']:<12} "
+            f"{started:<22} "
+            f"{rank:<6} "
+            f"{r['total_rounds']:<8}"
+        )
+    print("-" * 70)
 
 
 if __name__ == "__main__":

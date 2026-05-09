@@ -120,6 +120,24 @@ class CompItem(Base):
     priority: Mapped[int] = mapped_column(Integer, default=1)  # 1=最高优先级
 
 
+class GameReplay(Base):
+    """对局复盘表。
+
+    保存完整对局历史，包括所有快照和最终棋盘状态的 JSON 序列化数据。
+    """
+
+    __tablename__ = "game_replays"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    player_name: Mapped[str] = mapped_column(String(64), default="Player")
+    started_at: Mapped[datetime]
+    ended_at: Mapped[datetime]
+    final_rank: Mapped[int | None]
+    total_rounds: Mapped[int]
+    snapshots: Mapped[str | None]  # JSON 序列化的所有快照
+    final_board: Mapped[str | None]  # JSON 序列化的最终棋盘
+
+
 # 模块级全局变量，由 init_db() 初始化
 _engine: Any = None
 _SessionLocal: sessionmaker[Session] | None = None

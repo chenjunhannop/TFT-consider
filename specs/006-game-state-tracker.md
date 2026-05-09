@@ -15,6 +15,6 @@
 - [ ] 复盘包含：每回合状态快照、当时建议、最终阵容和排名
 - [ ] 支持 CLI 命令 `tft-consider history` 查看历史对局记录
 
-## Status: PENDING
+## Status: COMPLETE
 
-<!-- NR_OF_TRIES: 0 -->
+<!-- NR_OF_TRIES: 1 -->

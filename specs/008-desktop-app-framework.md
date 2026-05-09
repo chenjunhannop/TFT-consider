@@ -17,6 +17,6 @@
 - [ ] 应用关闭时自动清理临时截图文件
 - [ ] 只在 Windows 平台运行
 
-## Status: PENDING
+## Status: COMPLETE
 
-<!-- NR_OF_TRIES: 0 -->
+<!-- NR_OF_TRIES: 1 -->

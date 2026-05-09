@@ -81,6 +81,7 @@ class TestInitDbAndSession:
             "synergies",
             "comp_champions",
             "comp_items",
+            "game_replays",
         }
         assert set(table_names) == expected
 

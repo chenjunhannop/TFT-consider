@@ -26,3 +26,11 @@
 - main.py 更新: `tft-consider sync-data` 和 `tft-consider check` CLI 命令
 - 总计 227 tests passed, ruff + mypy 零错误
 - 子 agent: backend-implementer ×2 + test-writer ×2
+
+## 2026-05-09 — Spec 006 + 008 完成
+- Spec 006: tracker 模块 (GameState + AdvicePipeline + GameReplay + replay), 86 tests
+- Spec 008: UI 模块 (MainWindow + TftConsiderApp + 系统托盘 + 主题), 77 tests
+- main.py 更新: `tft-consider run` 和 `tft-consider history` CLI 命令
+- 修复 QApplication 单例复用问题
+- 总计 390 tests passed, ruff + mypy 零错误
+- 子 agent: backend-implementer ×2 + test-writer ×2
