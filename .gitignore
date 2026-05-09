@@ -1,0 +1,49 @@
+# Config (contains API keys)
+config.yaml
+*.secret
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Database
+*.db
+*.sqlite3
+
+# Temp screenshots
+screenshots/
+tmp/
+*.tmp
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Completion logs (created by Ralph loop at runtime)
+completion_log/
+
+# Ralph Wiggum
+IMPLEMENTATION_PLAN.md
+PROMPT_build.md
+PROMPT_plan.md
+
+# uv
+uv.lock
