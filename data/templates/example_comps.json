@@ -1,0 +1,142 @@
+{
+  "set": "14",
+  "patch": "14.10",
+  "champions": [
+    { "name": "艾希", "cost": 1, "traits": ["狙神", "水晶"] },
+    { "name": "盖伦", "cost": 1, "traits": ["护卫", "德玛西亚"] },
+    { "name": "薇古丝", "cost": 1, "traits": ["法师", "暗影岛"] },
+    { "name": "波比", "cost": 1, "traits": ["护卫", "约德尔人"] },
+    { "name": "拉克丝", "cost": 2, "traits": ["法师", "德玛西亚"] },
+    { "name": "蔚", "cost": 2, "traits": ["格斗家", "皮城执法官"] },
+    { "name": "安妮", "cost": 2, "traits": ["法师", "炎魂"] },
+    { "name": "慎", "cost": 3, "traits": ["护卫", "均衡教派"] },
+    { "name": "维克托", "cost": 3, "traits": ["法师", "机械先驱"] },
+    { "name": "雷欧娜", "cost": 4, "traits": ["护卫", "日炎"] },
+    { "name": "辛德拉", "cost": 4, "traits": ["法师", "暗星"] },
+    { "name": "奥利安娜", "cost": 4, "traits": ["法师", "发条"] },
+    { "name": "加里奥", "cost": 5, "traits": ["护卫", "巨像"] },
+    { "name": "瑞兹", "cost": 5, "traits": ["法师", "流浪法师"] }
+  ],
+  "items": [
+    { "name": "无尽之刃", "components": ["暴风大剑", "暴风大剑"], "effect": "增加75%暴击伤害" },
+    { "name": "珠光护手", "components": ["无用大棒", "拳套"], "effect": "技能可暴击并增加40%暴击伤害" },
+    { "name": "蓝霸符", "components": ["女神之泪", "女神之泪"], "effect": "施法后回复20法力值" },
+    { "name": "朔极之矛", "components": ["暴风大剑", "女神之泪"], "effect": "普攻额外回复5法力值" },
+    { "name": "灭世者的死亡之帽", "components": ["无用大棒", "无用大棒"], "effect": "增加70法术强度" },
+    { "name": "狂徒铠甲", "components": ["巨人腰带", "巨人腰带"], "effect": "增加1000生命值" },
+    { "name": "棘刺背心", "components": ["锁子甲", "锁子甲"], "effect": "格挡50%暴击伤害并反弹魔法伤害" },
+    { "name": "巨龙之爪", "components": ["负极斗篷", "负极斗篷"], "effect": "增加100魔抗，每2秒回复4%最大生命值" },
+    { "name": "石像鬼石板甲", "components": ["锁子甲", "负极斗篷"], "effect": "被攻击时增加15护甲和魔抗，最多叠加5层" },
+    { "name": "鬼索的狂暴之刃", "components": ["反曲之弓", "无用大棒"], "effect": "攻击增加6%攻速，可无限叠加" }
+  ],
+  "synergies": [
+    {
+      "name": "法师",
+      "breakpoints": [2, 4, 6, 8],
+      "effect_per_level": ["+25法术强度", "+50法术强度", "+90法术强度", "+150法术强度，技能双重施法"]
+    },
+    {
+      "name": "护卫",
+      "breakpoints": [2, 4, 6],
+      "effect_per_level": ["+30护甲", "+70护甲，战斗开始时获得护盾", "+120护甲，护盾翻倍"]
+    },
+    {
+      "name": "狙神",
+      "breakpoints": [2, 4],
+      "effect_per_level": ["每格距离+8%伤害", "每格距离+16%伤害"]
+    },
+    {
+      "name": "格斗家",
+      "breakpoints": [2, 4, 6],
+      "effect_per_level": ["+200生命值", "+400生命值", "+700生命值"]
+    },
+    {
+      "name": "德玛西亚",
+      "breakpoints": [3, 5, 7],
+      "effect_per_level": ["最强者获得光明装备", "2名最强者获得光明装备", "4名最强者获得光明装备"]
+    },
+    {
+      "name": "暗星",
+      "breakpoints": [2, 4],
+      "effect_per_level": ["友军阵亡时+15攻击力和法强", "友军阵亡时+35攻击力和法强"]
+    }
+  ],
+  "compositions": [
+    {
+      "name": "八法师",
+      "tier": "S",
+      "difficulty": "medium",
+      "playstyle": "运营",
+      "description": "八法师是当前版本最强的法术阵容，利用8法师双重施法和高额法强爆发秒杀对手。核心思路是快速升至8级搜出瑞兹和辛德拉，配合蓝霸符和珠光护手打出巨额AOE伤害。前排依靠盖伦、波比和慎提供稳定坦度，为后排法师争取输出时间。",
+      "positioning": [
+        {"champion": "盖伦", "row": 0, "col": 2},
+        {"champion": "波比", "row": 0, "col": 4},
+        {"champion": "慎", "row": 1, "col": 1},
+        {"champion": "加里奥", "row": 1, "col": 5},
+        {"champion": "安妮", "row": 2, "col": 2},
+        {"champion": "薇古丝", "row": 3, "col": 1},
+        {"champion": "辛德拉", "row": 3, "col": 3},
+        {"champion": "瑞兹", "row": 3, "col": 5}
+      ],
+      "champions": [
+        {"name": "瑞兹", "is_core": true, "star_target": 2, "position": "3,5"},
+        {"name": "辛德拉", "is_core": true, "star_target": 2, "position": "3,3"},
+        {"name": "安妮", "is_core": true, "star_target": 3, "position": "2,2"},
+        {"name": "薇古丝", "is_core": false, "star_target": 2, "position": "3,1"},
+        {"name": "拉克丝", "is_core": false, "star_target": 2},
+        {"name": "盖伦", "is_core": true, "star_target": 3, "position": "0,2"},
+        {"name": "波比", "is_core": false, "star_target": 3, "position": "0,4"},
+        {"name": "慎", "is_core": false, "star_target": 2, "position": "1,1"},
+        {"name": "加里奥", "is_core": false, "star_target": 2, "position": "1,5"}
+      ],
+      "items": [
+        {"champion": "瑞兹", "item": "蓝霸符", "priority": 1},
+        {"champion": "瑞兹", "item": "珠光护手", "priority": 2},
+        {"champion": "瑞兹", "item": "无尽之刃", "priority": 3},
+        {"champion": "辛德拉", "item": "朔极之矛", "priority": 1},
+        {"champion": "辛德拉", "item": "灭世者的死亡之帽", "priority": 2},
+        {"champion": "盖伦", "item": "狂徒铠甲", "priority": 1},
+        {"champion": "盖伦", "item": "棘刺背心", "priority": 2},
+        {"champion": "盖伦", "item": "巨龙之爪", "priority": 3},
+        {"champion": "安妮", "item": "石像鬼石板甲", "priority": 1}
+      ]
+    },
+    {
+      "name": "六护卫",
+      "tier": "A",
+      "difficulty": "easy",
+      "playstyle": "连胜",
+      "description": "六护卫阵容以超高坦度为核心，利用护卫羁绊提供巨额护甲和护盾，让前排几乎无法被物理阵容突破。搭配狙神艾希在远程提供持续输出，维克托补充法术伤害。阵容成型简单，适合新手入门和稳定上分。",
+      "positioning": [
+        {"champion": "波比", "row": 0, "col": 0},
+        {"champion": "盖伦", "row": 0, "col": 2},
+        {"champion": "雷欧娜", "row": 0, "col": 4},
+        {"champion": "慎", "row": 0, "col": 6},
+        {"champion": "加里奥", "row": 1, "col": 3},
+        {"champion": "蔚", "row": 1, "col": 5},
+        {"champion": "艾希", "row": 3, "col": 3},
+        {"champion": "维克托", "row": 3, "col": 5}
+      ],
+      "champions": [
+        {"name": "艾希", "is_core": true, "star_target": 3, "position": "3,3"},
+        {"name": "维克托", "is_core": true, "star_target": 2, "position": "3,5"},
+        {"name": "盖伦", "is_core": true, "star_target": 3, "position": "0,2"},
+        {"name": "波比", "is_core": true, "star_target": 3, "position": "0,0"},
+        {"name": "雷欧娜", "is_core": true, "star_target": 2, "position": "0,4"},
+        {"name": "慎", "is_core": false, "star_target": 2, "position": "0,6"},
+        {"name": "加里奥", "is_core": false, "star_target": 2, "position": "1,3"},
+        {"name": "蔚", "is_core": false, "star_target": 2, "position": "1,5"}
+      ],
+      "items": [
+        {"champion": "艾希", "item": "鬼索的狂暴之刃", "priority": 1},
+        {"champion": "艾希", "item": "无尽之刃", "priority": 2},
+        {"champion": "盖伦", "item": "狂徒铠甲", "priority": 1},
+        {"champion": "盖伦", "item": "棘刺背心", "priority": 2},
+        {"champion": "雷欧娜", "item": "石像鬼石板甲", "priority": 1},
+        {"champion": "雷欧娜", "item": "巨龙之爪", "priority": 2},
+        {"champion": "维克托", "item": "珠光护手", "priority": 1},
+        {"champion": "维克托", "item": "蓝霸符", "priority": 2}
+      ]
+    }
+  ]
+}

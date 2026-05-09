@@ -64,7 +64,10 @@ def save_config(config: dict[str, Any]) -> None:
 
 
 def get_api_key(config: dict[str, Any]) -> str:
-    key: str = config.get("api", {}).get("key", "")
+    api_cfg = config.get("api", {})
+    if not isinstance(api_cfg, dict):
+        raise ValueError("Invalid config: api section must be a dict")
+    key: str = api_cfg.get("key", "")
     if not key:
         raise ValueError("API key not configured. Run setup wizard or set api.key in config.yaml")
     try:

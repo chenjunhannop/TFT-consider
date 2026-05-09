@@ -17,6 +17,6 @@
 - [ ] 对 > 4K 分辨率的截图自动降采样到 1920×1080 后再发送
 - [ ] 预留 `AnthropicProvider`、`OpenAIProvider` 接口规划（不实现）
 
-## Status: PENDING
+## Status: COMPLETE
 
-<!-- NR_OF_TRIES: 0 -->
+<!-- NR_OF_TRIES: 1 -->

@@ -18,6 +18,6 @@
 - [ ] 手动维护一个赛季 JSON 数据模板作为初始基础数据
 - [ ] 每个阵容包含：名称、难度、核心棋子（含目标星级）、装备优先级、运营节奏、标准站位
 
-## Status: PENDING
+## Status: COMPLETE
 
-<!-- NR_OF_TRIES: 0 -->
+<!-- NR_OF_TRIES: 1 -->
