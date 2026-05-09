@@ -15,6 +15,6 @@
 - [ ] 支持 CLI 命令 `tft-consider sync-data` 手动触发同步
 - [ ] 爬取逻辑独立模块，方便后续添加新数据源
 
-## Status: PENDING
+## Status: COMPLETE
 
-<!-- NR_OF_TRIES: 0 -->
+<!-- NR_OF_TRIES: 1 -->

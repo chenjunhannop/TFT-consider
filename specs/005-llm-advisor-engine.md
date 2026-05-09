@@ -15,6 +15,6 @@
 - [ ] LLM 调用失败时有 fallback：降级为纯数据库匹配建议（无 LLM 推理）
 - [ ] 支持 `level`（stay/slow_level/rush_level）、`roll`（save/roll_interest/roll_down/all_in）、`positioning`（standard/anti_assassin/anti_aoe）等建议类型
 
-## Status: PENDING
+## Status: COMPLETE
 
-<!-- NR_OF_TRIES: 0 -->
+<!-- NR_OF_TRIES: 1 -->

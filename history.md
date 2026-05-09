@@ -19,3 +19,10 @@
 - 修复 datetime.utcnow 弃用 → datetime.now(tz=UTC)
 - 总计 117 tests passed, ruff + mypy 零错误
 - 子 agent: backend-implementer ×2 + test-writer ×2
+
+## 2026-05-09 — Spec 004 + 005 完成
+- Spec 004: crawler 模块 (TacticsToolsCrawler + SyncScheduler + CLI), 63 tests
+- Spec 005: engine 模块 (matcher + Advisor + fallback), 47 tests
+- main.py 更新: `tft-consider sync-data` 和 `tft-consider check` CLI 命令
+- 总计 227 tests passed, ruff + mypy 零错误
+- 子 agent: backend-implementer ×2 + test-writer ×2
