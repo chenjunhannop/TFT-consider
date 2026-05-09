@@ -7,9 +7,11 @@
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 from unittest.mock import patch
 
+import pytest
 from PIL import Image
 
 from tft_consider.screenshot.capturer import ScreenshotCapturer
@@ -100,6 +102,7 @@ class TestDownscale:
 class TestCapturerInit:
     """ScreenshotCapturer.__init__ 临时目录处理。"""
 
+    @pytest.mark.skipif(os.name == "nt", reason="Windows 使用 TEMP 而非 XDG_CACHE_HOME")
     def test_capturer_init_default_temp_dir(self, monkeypatch, tmp_path: Path) -> None:
         """未指定 temp_dir 且无配置时，使用默认 XDG_CACHE_HOME 路径并创建。"""
         monkeypatch.setenv("XDG_CACHE_HOME", str(tmp_path))

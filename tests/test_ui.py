@@ -642,6 +642,7 @@ class TestMainWindowResolveTempDir:
         result = window._resolve_temp_dir()
         assert result == configured
 
+    @pytest.mark.skipif(os.name == "nt", reason="测试非 Windows 平台的 XDG 路径逻辑")
     def test_resolve_unconfigured_non_nt(self, qapp: QApplication, default_config: dict[str, Any]) -> None:
         """未配置 temp_dir 且非 Windows 时应返回 XDG 缓存路径。"""
         from tft_consider.ui.main_window import MainWindow
