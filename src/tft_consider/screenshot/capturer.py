@@ -208,11 +208,11 @@ class ScreenshotCapturer:
             logger.error("ctypes 不可用")
             return None
 
-        try:
-            user32 = ctypes.windll.user32  # type: ignore[attr-defined]
-        except AttributeError:
+        windll = getattr(ctypes, "windll", None)
+        if windll is None:
             logger.error("无法加载 user32.dll")
             return None
+        user32 = windll.user32
 
         # 查找窗口
         hwnd = user32.FindWindowW(None, window_title)
