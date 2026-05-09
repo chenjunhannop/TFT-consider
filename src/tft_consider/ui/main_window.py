@@ -26,6 +26,8 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
+from tft_consider.ui.comp_widget import CompositionWidget
+
 logger = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------
@@ -200,14 +202,19 @@ class MainWindow(QMainWindow):
         status_layout.addWidget(self._status_label)
         splitter.addWidget(self._status_panel)
 
-        # 中间: 阵容可视化区域 (placeholder)
+        # 中间: 阵容可视化区域
         self._comp_panel = self._make_panel("阵容可视化")
-        comp_placeholder = QLabel("阵容可视化\n(后续实现)")
-        comp_placeholder.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        comp_placeholder.setStyleSheet("color: #666666; font-size: 12px;")
+        self._comp_widget = CompositionWidget()
+        # 根据当前主题应用初始配色
+        ui_cfg_theme = self._config.get("ui", {})
+        if isinstance(ui_cfg_theme, dict):
+            theme = str(ui_cfg_theme.get("theme", "dark")).lower()
+        else:
+            theme = "dark"
+        self._comp_widget.set_theme(theme)
         comp_layout = self._comp_panel.layout()
         assert comp_layout is not None
-        comp_layout.addWidget(comp_placeholder)
+        comp_layout.addWidget(self._comp_widget)
         splitter.addWidget(self._comp_panel)
 
         # 右侧: 行动建议面板
@@ -326,6 +333,8 @@ class MainWindow(QMainWindow):
         theme = str(ui_cfg.get("theme", "dark")).lower()
         stylesheet = _DARK_THEME if theme == "dark" else _LIGHT_THEME
         self.setStyleSheet(stylesheet)
+        if hasattr(self, "_comp_widget"):
+            self._comp_widget.set_theme(theme)
         logger.debug("应用主题: %s", theme)
 
     # ------------------------------------------------------------------
@@ -378,6 +387,33 @@ class MainWindow(QMainWindow):
             phase: 阶段标识，如 "1-1"、"3-2" 等。
         """
         self._phase_label.setText(f"阶段: {phase}")
+
+    def update_composition(self, comp: dict[str, Any]) -> None:
+        """更新阵容可视化面板为单个阵容。
+
+        向后兼容：如果 _comp_widget 不存在（例如旧版初始化），则无操作。
+
+        Args:
+            comp: 单个阵容字典，来自 match_compositions() 返回的元素。
+        """
+        if hasattr(self, "_comp_widget") and self._comp_widget is not None:
+            self._comp_widget.set_composition(comp)
+
+    def update_compositions(
+        self,
+        comps: list[dict[str, Any]],
+        game_state: dict[str, Any] | None = None,
+    ) -> None:
+        """更新阵容可视化面板为多个阵容（支持切换）。
+
+        向后兼容：如果 _comp_widget 不存在，则无操作。
+
+        Args:
+            comps: 阵容字典列表。
+            game_state: 当前游戏状态（可选，用于高亮已持有棋子）。
+        """
+        if hasattr(self, "_comp_widget") and self._comp_widget is not None:
+            self._comp_widget.set_compositions(comps, game_state)
 
     def set_screenshot_status(self, status: str) -> None:
         """更新底部状态栏的截图状态显示。

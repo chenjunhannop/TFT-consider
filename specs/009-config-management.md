@@ -15,6 +15,6 @@
 - [ ] CLI 命令 `tft-consider check` 验证配置完整有效
 - [ ] 配置文件缺失或格式错误时，给出清晰错误提示和恢复建议（重新运行引导向导）
 
-## Status: PENDING
+## Status: COMPLETE
 
-<!-- NR_OF_TRIES: 0 -->
+<!-- NR_OF_TRIES: 1 -->

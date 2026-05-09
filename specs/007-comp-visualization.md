@@ -15,6 +15,6 @@
 - [ ] 多个推荐阵容时支持 Tab 或下拉切换查看
 - [ ] 核心棋子与自由位棋子有视觉区分（如不同边框颜色）
 
-## Status: PENDING
+## Status: COMPLETE
 
-<!-- NR_OF_TRIES: 0 -->
+<!-- NR_OF_TRIES: 1 -->

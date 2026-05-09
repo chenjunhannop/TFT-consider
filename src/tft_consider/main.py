@@ -5,6 +5,7 @@
     tft-consider sync-data  从外部数据站同步 meta 数据
     tft-consider check      检查配置和环境
     tft-consider run        启动桌面应用主窗口
+    tft-consider setup      强制运行配置向导（即使已配置过）
     tft-consider history    显示最近对局记录
 """
 
@@ -29,6 +30,8 @@ def main() -> None:
         _cmd_check()
     elif len(sys.argv) > 1 and sys.argv[1] == "run":
         _cmd_run()
+    elif len(sys.argv) > 1 and sys.argv[1] == "setup":
+        _cmd_setup()
     elif len(sys.argv) > 1 and sys.argv[1] == "history":
         _cmd_history()
     else:
@@ -38,6 +41,7 @@ def main() -> None:
         print("  tft-consider sync-data   从外部数据站同步 meta 数据")
         print("  tft-consider check       检查配置和环境")
         print("  tft-consider run         启动桌面应用主窗口")
+        print("  tft-consider setup       强制运行配置向导（即使已配置过）")
         print("  tft-consider history     显示最近对局记录")
 
 
@@ -101,6 +105,45 @@ def _cmd_check() -> None:
             print(f"  [OK] {mod_name} ({desc})")
         except ImportError:
             print(f"  [WARN] {mod_name} 未安装 ({desc})")
+
+
+def _cmd_setup() -> None:
+    """强制运行配置向导（即使已配置过）。"""
+    from tft_consider.config import load_config, save_config
+
+    config = load_config()
+    print("TFT-Consider 配置向导")
+    print("=" * 50)
+
+    from PySide6.QtWidgets import QApplication, QWizard
+
+    # 创建 QApplication（如果已存在则复用）
+    existing = QApplication.instance()
+    if isinstance(existing, QApplication):
+        app = existing
+    else:
+        app = QApplication(["tft-consider", "setup"])
+
+    from tft_consider.ui.setup_wizard import SetupWizard
+
+    wizard = SetupWizard(config)
+    result = wizard.exec()
+
+    if result == QWizard.DialogCode.Accepted:
+        config = wizard.get_config()
+        try:
+            save_config(config)
+            print("\n配置已保存。")
+            print("现在可以运行 tft-consider run 启动应用。")
+        except OSError as exc:
+            print(f"\n[错误] 配置保存失败: {exc}")
+            sys.exit(1)
+    else:
+        print("\n已取消配置。")
+
+    # 清理：只在本次创建的 QApplication 上退出
+    if existing is None:
+        app.quit()
 
 
 def _cmd_history() -> None:

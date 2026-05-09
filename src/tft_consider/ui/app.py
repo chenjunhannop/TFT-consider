@@ -12,10 +12,12 @@ import subprocess
 import sys
 from typing import Any
 
-from PySide6.QtWidgets import QApplication, QMessageBox
+from PySide6.QtWidgets import QApplication, QMessageBox, QWizard
 
 from tft_consider import __version__
+from tft_consider.config import save_config
 from tft_consider.ui.main_window import MainWindow
+from tft_consider.ui.setup_wizard import SetupWizard
 
 logger = logging.getLogger(__name__)
 
@@ -52,6 +54,11 @@ class TftConsiderApp:
 
         logger.info("QApplication 初始化完成 (version=%s)", __version__)
 
+        # 首次启动检测：api.key 为空则显示配置向导
+        if not self._maybe_run_setup_wizard():
+            logger.info("用户取消配置向导，退出应用")
+            return
+
         # 检测英雄联盟客户端
         self._check_lol_client()
 
@@ -75,6 +82,45 @@ class TftConsiderApp:
     # ------------------------------------------------------------------
     # 内部方法
     # ------------------------------------------------------------------
+
+    def _maybe_run_setup_wizard(self) -> bool:
+        """检测是否需要首次配置，需要时显示 SetupWizard。
+
+        当 api.key 为空（首次启动或未配置）时，弹出配置向导。
+        用户完成向导后保存配置并返回 True；取消向导返回 False。
+
+        Returns:
+            True 表示配置已就绪（原有或用户完成），可以继续启动。
+            False 表示用户取消向导，应退出应用。
+        """
+        api_cfg = self._config.get("api", {})
+        if not isinstance(api_cfg, dict):
+            api_cfg = {}
+        api_key = api_cfg.get("key", "")
+
+        if api_key:
+            logger.info("API Key 已配置，跳过首次配置向导")
+            return True
+
+        logger.info("API Key 未配置，显示首次配置向导")
+        wizard = SetupWizard(self._config)
+        if wizard.exec() != QWizard.DialogCode.Accepted:
+            return False
+
+        # 用户完成向导，更新配置并保存
+        self._config = wizard.get_config()
+        try:
+            save_config(self._config)
+            logger.info("配置已保存")
+        except OSError as exc:
+            QMessageBox.warning(
+                None,
+                "保存失败",
+                f"配置保存失败，请检查磁盘空间和权限。\n\n错误信息: {exc}",
+            )
+            return False
+
+        return True
 
     def _check_lol_client(self) -> None:
         """检测英雄联盟客户端是否运行。

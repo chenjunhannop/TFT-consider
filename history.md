@@ -34,3 +34,11 @@
 - 修复 QApplication 单例复用问题
 - 总计 390 tests passed, ruff + mypy 零错误
 - 子 agent: backend-implementer ×2 + test-writer ×2
+
+## 2026-05-09 — Spec 007 + 009 完成
+- Spec 007: comp_widget 模块 (CompositionWidget + BoardArea + BoardCell), 棋盘 QPainter 绘制, 4×7 站位图, 羁绊/装备展示, 拖拽交换, 多阵容 Tab 切换
+- Spec 009: setup_wizard 模块 (SetupWizard 4 页引导), app.py 首次启动检测, CLI `tft-consider setup` 命令
+- 新增 tests/test_comp_widget.py (85 tests) + tests/test_setup_wizard.py (69 tests)
+- 新增 tests/conftest.py 提取共享 qapp fixture
+- 总计 544 tests passed, ruff + mypy 零错误
+- 子 agent: frontend-implementer ×2 + test-writer ×2
