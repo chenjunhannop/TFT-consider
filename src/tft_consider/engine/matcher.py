@@ -78,7 +78,10 @@ def match_compositions(
             held_item_names.add(item_entry["name"])
 
     # 3. 查询所有阵容
-    session = get_session()
+    try:
+        session = get_session()
+    except RuntimeError:
+        return []  # 数据库未初始化，优雅降级
     try:
         compositions = session.query(Composition).all()
 
